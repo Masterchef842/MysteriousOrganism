@@ -45,6 +45,20 @@ function pAequorFactory(){
 
       let percent= Math.floor((count/this.dna.length)*100);
       console.log(`specimen #1 and specimen #2 have ${percent}% DNA in common`);
+    },
+
+    willLikelySurvive(){
+      let count=0;
+      for(let i=0; i<this.dna.length; i++){
+        if(this.dna[i]==='C'||this.dna[i]==='G'){
+          count++;
+        }
+      }
+
+      if(count/this.dna.length>=0.6){
+        return true;
+      }
+      return false;
     }
   }
 }
@@ -57,6 +71,11 @@ let t2=pAequorFactory();
 let t3=pAequorFactory();
 let t4=pAequorFactory();
 let t5=pAequorFactory();
+
+let t6=pAequorFactory();
+t6.dna=['C','C','C','G','G','C','C','C','C','C','C','C','C','C','C'];
+let t7=pAequorFactory();
+t7.dna=['A','A','A','G','G','A','A','A','A','A','A','A','A','A','A'];
 
 
 //id test
@@ -84,5 +103,27 @@ let t5=pAequorFactory();
 // t1.compareDNA(t2.dna);
 
 
+//survival test
+// console.log(t6.willLikelySurvive());
+// console.log(t7.willLikelySurvive());
 
+function create30(){
+  let arr=[]
+  while(arr.length<30){
+    let organism=pAequorFactory();
+    if(organism.willLikelySurvive()){
+      arr.push(organism);
+    }
+  }
 
+  return arr;
+}
+//create30 test
+// let arr30=create30();
+// for(let i=0;i< arr30.length;i++){
+//   console.log(arr30[i].specimenNum);
+//   console.log(arr30[i].willLikelySurvive())
+//   if(!arr30[i].willLikelySurvive()){
+//     console.error('problem here')
+//   }
+// }
